@@ -53,6 +53,50 @@ const Regd=require('./Registration')
         res.json(response);
      });
 
+     app.get('/notes/delete/:id', async function (req, res) {
+        try {
+            const deletenote=await Note.findByIdAndDelete(req.params.id);
+            if (deletenote) {
+                res.json({message:'Note Is Deleted'});
+            } else {
+                res.json({message:'No Data Found'});
+            }
+        } catch (error) {
+            res.json({message:error.message});
+        }
+    });
+
+    app.get('/notes/delete/user/:userid',async function(req,res){
+        try {
+            const deletenote=await Note.findOneAndDelete({userid:req.params.userid}); 
+            if (deletenote) {
+                res.json({message:'Note Is Deleted'});
+            } else {
+                res.json({message:'No Data Found'});
+            }
+        } catch (error) {
+            res.json({message:error.message});
+        }
+    })
+
+    app.post('/notes/update', async function (req, res) {
+        try {
+            const updatedNote = await Note.findByIdAndUpdate(
+                req.body.id, 
+                { $set: { userid: req.body.userid, title: req.body.title, content: req.body.content } },
+                { new: true }
+            );
+            if (!updatedNote) {
+                return res.status(404).json({ message: 'Note not found' });
+            }
+            res.json({ message: 'Note updated successfully', updatedNote });
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    });
+    
+    
+
  });
 
 
