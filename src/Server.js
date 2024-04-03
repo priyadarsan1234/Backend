@@ -58,5 +58,5 @@ const Regd=require('./Registration')
 
 const PORT=process.env.PORT||5000
 app.listen(PORT,function () {
-    console.log("Server Is Running At Port Number 5000");
+    console.log("Server Is Running At Port Number ",PORT);
 });
