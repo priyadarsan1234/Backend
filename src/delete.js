@@ -23,5 +23,19 @@ router.get('/:id', async function (req, res) {
 });
 
 
-
 module.exports = router;
+// app.get('/notes/delete/user/:userid',async function(req,res){
+    //     try {
+    //         const deletenote=await Note.findOneAndDelete({userid:req.params.userid}); 
+    //         if (deletenote) {
+    //             res.json({message:'Note Is Deleted'});
+    //         } else {
+    //             res.json({message:'No Data Found'});
+    //         }
+    //     } catch (error) {
+    //         res.json({message:error.message});
+    //     }
+    // })
+
+
+
